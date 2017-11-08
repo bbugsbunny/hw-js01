@@ -1,31 +1,28 @@
-const a = Number(prompt('Input a'));
-const b = Number(prompt('Input b'));
-const c = Number(prompt('input c'));
+function diskriminans(a, b, c) {
+    let d = (b * b) - (4 * a * c);
+    return d;
+}
 
-function solve(a, b, c) {
-    const d = b * b - 4 * a * c;
-    if (d > 0 && a!==0) {
-        var x1 = (-b - Math.sqrt(d)) / (2 * a);
-        var x2 = (-b + Math.sqrt(d)) / (2 * a);
-        return ['Рівняння має два кореня:' + '<br>' + 'x1 = ' + x1 + '<br>' + 'x2 = ' + x2];
-    }
-    else if (d == 0 && a!==0) {
-        var x = -b / (2 * a);
-        return ['Рівняння має один корінь:' + '<br>' + 'x = ' + x];
-    }
-    else if (d < 0 && a!==0) {
-        var x3 = -b / (2 * a);
-        var x31 = Math.sqrt(-d) / (2 * a);
-        var x4 = -b / (2 * a);
-        var x41 = Math.sqrt(-d) / (2 * a);
-        return ['Рівняння дійсних коренів не має, але існують два комплексних спряжених кореня:' + '<br>' + 'x1 = ' + x3 + '+' + x31 + 'i' + '<br>' + 'x2 = ' + x4 + '-' + x41 + 'i'];
-    }
-    else if (a==0 && b!==0) {
-        var x5 = -c/b;
-        return ['При а=0 рівняння не є квадратичним i має один корінь:' + '<br>' + 'x = ' + x5];
-    }
-    else {
-        return "Немає розв'язку";
+function quadraticEquation(a, b, c, d) {
+    if (d > 0) {
+        let decision1 = (-(b) + Math.sqrt(d)) / (a * 2);
+        let decision2 = (-(b) - Math.sqrt(d)) / (a * 2);
+        return "<br>= " + decision1 + "<br>= " + decision2;
+    } else if (d == 0) {
+        let decision = (-b) / (a * 2);
+        return decision;
+    } else {
+        return "no decision";
     }
 }
-document.write(solve(a, b, c));
+
+//start 
+let a = Number(prompt("A: "));
+let b = Number(prompt("B: "));
+let c = Number(prompt("C: "));
+
+document.write("A= " + a + " B= " + b + " C= " + c + "<br>");
+document.write("ax<sup>2</sup>+bx+c=0 <br>");
+document.write(a + "x<sup>2</sup>+" + b + "x+" + c + "=0" + "<br><br>");
+document.write("Diskriminans is: " + diskriminans(a, b, c) + "<br><br>");
+document.write("So there is: " + quadraticEquation(a, b, c, diskriminans(a, b, c)) + "<br>");
